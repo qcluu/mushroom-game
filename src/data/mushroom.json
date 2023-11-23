@@ -1,0 +1,43 @@
+[
+  {
+    "id": 1,
+    "sname": "amanita_muscaria",
+    "cname": "(Red) Fly Agaric",
+    "img": "assets/sprites/mushroom.png",
+    "species": "A. muscaria",
+    "genus": "Amanita",
+    "family": "Amanitaceae",
+    "order": "",
+    "division": "",
+    "domain": "",
+    "kingdom": "Fungi",
+    "nativeTo": "Temperate and boreal regions of the Northern Hemisphere, but has been introduced to the Southern Hemisphere",
+    "poisonous": true,
+    "edible": "cooked",
+    "cooked": "boiling",
+    "hallucinogenic": true, 
+    "fact": "It used to grow on pine and birch, but now is a true cosmopolitan speicies!",
+    "x": 400,
+    "y": 300
+  },
+  {
+    "id": 2,
+    "sname": "lycoperdon_perlatum",
+    "cname": "puffball mushroom",
+    "img": "assets/sprites/puffball-mushroom.png",
+    "species": "Lycoperdon Perlatum",
+    "genus": "Lycoperdon",
+    "family": "Agaricaceae",
+    "order": "Agaricaceae",
+    "division": "Basidiomycota",
+    "domain": "Eukaryota",
+    "kingdom": "Fungi",
+    "nativeTo": "",
+    "poisonous": false,
+    "edible": "always",
+    "cooked": "",
+    "fact": "it's so cute and big!",
+    "x": 500,
+    "y": 400
+  }
+]

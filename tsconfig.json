@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "moduleResolution": "Node",
+    // "noImplicitAny": true,
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "importHelpers": true,
+    "sourceMap": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
+    "strictNullChecks": false,
+    // "allowImportingTsExtensions": true,
+    "jsx": "react",
+  },
+  "include": ["./src/**/*"],
+  "typeRoots": [
+    "./node_modules/@types",
+    "./node_modules/phaser/types/phaser.d.ts"
+  ],
+  "files": ["./node_modules/phaser/types/phaser.d.ts"],
+  "types": ["Phaser"]
+}
