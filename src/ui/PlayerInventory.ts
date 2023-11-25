@@ -20,7 +20,7 @@ export default class PlayerInventory extends Phaser.GameObjects.Container {
   readonly slotColor: number;
   readonly alphaValue: number;
 
-  constructor(scene: Phaser.Scene, x: number, y: number, width: number, height: number, rows: number, cols: number, slotSize: number, slotSpacing: number, pageWidth: number) {
+  constructor(scene: Phaser.Scene, x: number, y: number, width: number, height: number, rows: number, cols: number, slotSize: number, slotSpacing: number) {
     const bgWidth = cols * slotSize + (cols - 1) * slotSpacing + 64;
     const bgHeight = rows * slotSize + (rows - 1) * slotSpacing + 64;
 
@@ -29,8 +29,6 @@ export default class PlayerInventory extends Phaser.GameObjects.Container {
     this.bgColor = 15456681;
     this.slotColor = 15456681;
     this.alphaValue = 0.5;
-
-    this.pageWidth = pageWidth
 
     this.rows = rows;
     this.cols = cols;

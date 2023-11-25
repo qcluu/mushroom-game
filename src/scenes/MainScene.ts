@@ -1,19 +1,18 @@
 import Phaser from "phaser";
 // import mushrooms from "../data/mushroom.json";
-import PlayerInventory from '../ui/PlayerInventory';
+import PlayerInventory from "../ui/Inventory";
 import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
-import { TestMyCodex } from "../components/TestMyCodex"
+import MycoDex from "../ui/MycoDex"
 import game from "../game";
 
 export default class MainScene extends Phaser.Scene {
   mushrooms = require("../data/mushroom.json");
-  
-  private inventory: PlayerInventory
+  private inventory: PlayerInventory;
+  // private codex: MycoDex;
 
   constructor() {
     super({ key: "MainScene" });
-
   }
 
   preload() {
@@ -24,86 +23,71 @@ export default class MainScene extends Phaser.Scene {
     }
     this.load.image("bag", "assets/sprites/bag.png");
     this.load.image("journal", "assets/sprites/journal.png");
-    
-    this.inventory = new PlayerInventory(this, Number(this.sys.game.config.width) / 2, Number(this.sys.game.config.height) / 2, 100, 50, 6, 5, 96, 16);
-    this.inventory.setVisible(false);
   }
 
   create() {
+    const inventory = new PlayerInventory(this, Number(this.sys.game.config.width) / 2, Number(this.sys.game.config.height) / 2, 800, 400, 4, 8, 96, 16);
+    inventory.setVisible(false);
+
+    const codex = new MycoDex(this, Number(this.sys.game.config.width) / 2, Number(this.sys.game.config.height) / 2, 400, 600);
+    codex.setVisible(false);
 
     // Eventually, when we have 5 mushrooms we can change this.mushrooms.length to 5 or however many mushrooms we want
     for (let i = 0; i < this.mushrooms.length; i++) {
-      const mushroomObj = this.add
-        .image(
+      const mushroomSprite = this.add
+        .sprite(
           this.mushrooms[i]["x"],
           this.mushrooms[i]["y"],
           this.mushrooms[i]["sname"],
           this.mushrooms[i]["sname"]
         )
         .setScale(0.25);
-      mushroomObj.setData('data', this.mushrooms[i])
 
-      mushroomObj.setInteractive({ draggable: true });
+      mushroomSprite.setInteractive({ draggable: true });
 
-      mushroomObj.setTint(0xbbbbbb);
+      mushroomSprite.setTint(0xbbbbbb);
 
-      mushroomObj.on("pointerover", function (pointer) {
+      mushroomSprite.on("pointerover", function (pointer) {
         this.setTint(0xdddddd);
       });
 
-      mushroomObj.on("pointerout", function (pointer) {
+      mushroomSprite.on("pointerout", function (pointer) {
         this.setTint(0xbbbbbb);
       });
 
-      mushroomObj.on("pointerdown", function (pointer) {
+      mushroomSprite.on("pointerdown", function (pointer) {
         // Tint
         this.setTint(0xffffff);
       });
 
-      mushroomObj.on("pointerup", function (pointer) {
+      mushroomSprite.on("pointerup", function (pointer) {
         // if the bounds of the two objects interact then the mushroom_sprite is no longer visable
         if (
           Phaser.Geom.Intersects.RectangleToRectangle(
-            mushroomObj.getBounds(),
-            bagObj.getBounds()
+            mushroomSprite.getBounds(),
+            bagSprite.getBounds()
           )
         ) {
-          const collected = this.inventory.addNewItem(mushroomObj.getData("data"), mushroomObj)
+          mushroomSprite.visible = false;
 
-          if (collected) {
-            mushroomObj.visible = false;
-          }
+          // Collection logic
         }
       });
     }
 
-    const codexObj = this.add.image(150, 50, "journal").setScale(0.25).setInteractive();
 
-    codexObj.on("pointerup", function (pointer) {
-      const reactRoot = document.createElement('div');
-      document.body.appendChild(reactRoot);
+    const codexObj = this.add.image(150, 50, 'journal').setScale(0.25).setInteractive();
 
-      const [codexVisible, setCodexVisible] = useState(false);
-
-      let toggleCodexVisibility = () => {
-        setCodexVisible(!codexVisible);
-      }
-
-      // ReactDOM.render(
-      //   <TestMyCodex visible={codexVisible} toggleCodexVisibility={toggleCodexVisibility} />,
-      //   reactRoot
-      // )
+    codexObj.on('pointerup', function(pointer) {
+      codex.toggleBookVisibility()
     })
 
-    this.input.keyboard.on('keydown-I', function (keydown) {
-      this.inventory.toggleInventory()
-    }, this);
 
-    const bagObj = this.add.image(50, 50, "bag").setScale(0.25).setInteractive();
+    const bagSprite = this.add.sprite(50, 50, "bag").setScale(0.25).setInteractive();
     
-    bagObj.on("pointerup", function (pointer) {
-      this.inventory.toggleInventory()
-      // Mycodex.setShowCodex(true);
+    bagSprite.on("pointerup", function (pointer) {
+      this.inventory.visible = !this.inventory.visible
+      this.inventory.bringToFront()
     });
 
     //Event listeners
