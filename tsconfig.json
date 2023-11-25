@@ -19,6 +19,6 @@
     "./node_modules/@types",
     "./node_modules/phaser/types/phaser.d.ts"
   ],
-  "files": ["./node_modules/phaser/types/phaser.d.ts"],
+  "files": ["./node_modules/phaser/types/phaser.d.ts", "./src/ui/PlayerInventory.ts"],
   "types": ["Phaser"]
 }
