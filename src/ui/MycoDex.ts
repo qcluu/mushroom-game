@@ -1,4 +1,6 @@
 import Phaser from 'phaser';
+import { createRoundedRectWithAlpha } from '../utils/PhaserGraphics';
+import { getMushroomData } from '../utils/Shared';
 
 export default class MycoDex extends Phaser.GameObjects.Container { 
   mushrooms = require("../data/mushroom.json");
@@ -26,7 +28,7 @@ export default class MycoDex extends Phaser.GameObjects.Container {
     this.pageWidth = codexPageWidth;
     this.pageHeight = codexPageHeight;
 
-    const bg = this.createRoundedRectWithAlpha(scene, 0, 0, this.codexWidth, this.codexHeight, 10, 0x422222, 1);
+    const bg = createRoundedRectWithAlpha(scene, 0, 0, this.codexWidth, this.codexHeight, 10, 0x422222, 1);
     this.add(bg);
 
     const page1 = this.scene.add.container(20, 20); //will need to be responsive
@@ -35,8 +37,8 @@ export default class MycoDex extends Phaser.GameObjects.Container {
     this.add(page1);
     this.add(page2);
     
-    const pageBg1 = this.createRoundedRectWithAlpha(scene, 0, 0, this.pageWidth, this.pageHeight, 2, 0xFFFFDD, 1)
-    const pageBg2 = this.createRoundedRectWithAlpha(scene, 0, 0, this.pageWidth, this.pageHeight, 2, 0xFFFFDD, 1)
+    const pageBg1 = createRoundedRectWithAlpha(scene, 0, 0, this.pageWidth, this.pageHeight, 2, 0xFFFFDD, 1)
+    const pageBg2 = createRoundedRectWithAlpha(scene, 0, 0, this.pageWidth, this.pageHeight, 2, 0xFFFFDD, 1)
 
     page1.add(pageBg1)
     page2.add(pageBg2)
@@ -68,20 +70,9 @@ export default class MycoDex extends Phaser.GameObjects.Container {
   }
 
   private initializePage(page: Phaser.GameObjects.Container, id: number) {
-    const mushroomData = this.getMushroomData(id);
+    const mushroomData = getMushroomData(id);
 
     // Visualize mushroom data based on the data
-  }
-
-  private getMushroomData(id: number) {
-    const mushrooms = require("../data/mushroom.json");
-
-    for (let i = 0; i < mushrooms.length; i++) {
-      if (mushrooms[i]['id'] == id) {
-        return mushrooms[i]
-      }
-    }
-    return null;
   }
 
   private flipPage = () => {
@@ -101,12 +92,4 @@ export default class MycoDex extends Phaser.GameObjects.Container {
     this.bringToFront(); 
   };
   
-  createRoundedRectWithAlpha(scene, x: number, y: number, width: number, height: number, edgeRadius: number, color: number, alpha: number) {
-    const bg = scene.add.graphics();
-
-    bg.fillStyle(color, alpha);
-    bg.fillRoundedRect(x, y, width, height, edgeRadius);
-
-    return bg;
-  }
 }
