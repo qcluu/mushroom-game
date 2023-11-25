@@ -1,6 +1,6 @@
 import Phaser from "phaser";
 // import mushrooms from "../data/mushroom.json";
-import PlayerInventory from "../ui/Inventory";
+import PlayerInventory from "../ui/PlayerInventory";
 import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
 import MycoDex from "../ui/MycoDex"

@@ -84,13 +84,13 @@ export default class MycoDex extends Phaser.GameObjects.Container {
     return null;
   }
 
-  // private flipPage = () => {
-  //   const currentPageIndex = this.pages.findIndex((page) => page.visible);
-  //   if (currentPageIndex >= 0 && currentPageIndex < this.pages.length - 1) {
-  //     this.pages[currentPageIndex].setVisible(false);
-  //     this.pages[currentPageIndex + 1].setVisible(true);
-  //   }
-  // };
+  private flipPage = () => {
+    const currentPageIndex = this.pages.findIndex((page) => page.visible);
+    if (currentPageIndex >= 0 && currentPageIndex < this.pages.length - 1) {
+      this.pages[currentPageIndex].setVisible(false);
+      this.pages[currentPageIndex + 1].setVisible(true);
+    }
+  };
 
   bringToFront() {
     this.setDepth(1)
