@@ -22,7 +22,7 @@ export default class IntroScene extends Phaser.Scene {
 
     this.add.text(100, 500, 'Press SPACE to Start', {
       fontSize: '32px',
-      fill: '#fff',
+      // fill: '#fff',
     })
 
     this.input.keyboard.on('keydown-SPACE', this.startGame, this)
