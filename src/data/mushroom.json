@@ -15,7 +15,7 @@
     "poisonous": true,
     "edible": "cooked",
     "cooked": "boiling",
-    "hallucinogenic": true, 
+    "hallucinogenic": true,
     "fact": "It used to grow on pine and birch, but now is a true cosmopolitan speicies!",
     "x": 400,
     "y": 300
@@ -39,5 +39,25 @@
     "fact": "it's so cute and big!",
     "x": 500,
     "y": 400
+  },
+  {
+    "id": 3,
+    "sname": "hericium_erinaceus",
+    "cname": "lion's mane",
+    "img": "assets/sprites/",
+    "species": "Hericium Erinaceus",
+    "genus": "Hericium",
+    "family": "Hericiaceae",
+    "order": "Russulales",
+    "division": "Basidiomycota",
+    "domain": "Eukaryota",
+    "kingdom": "Fungi",
+    "nativeTo": "North America, Europe, and Asia",
+    "poisonous": false,
+    "edible": "always",
+    "cooked": "",
+    "fact": "",
+    "x": 200,
+    "y": 150
   }
 ]
