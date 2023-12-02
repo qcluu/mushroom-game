@@ -20,16 +20,33 @@ export default class IntroScene extends Phaser.Scene {
       )
       .setScale(0.25)
 
-    this.add.text(100, 500, 'Press SPACE to Start', {
+    const introText = this.add.text(100, 500, '', {
       fontSize: '32px',
-      // fill: '#fff',
+      color: '#fff',
+    })
+
+    const fullText = 'Press SPACE to Start'
+    let currentIndex = 0
+
+    const timer = this.time.addEvent({
+      delay: 100,
+      callback: function () {
+        introText.text += fullText[currentIndex]
+        currentIndex++
+
+        if (currentIndex === fullText.length) {
+          timer.destroy()
+        }
+      },
+      callbackScope: this,
+      loop: true,
     })
 
     this.input.keyboard.on('keydown-SPACE', this.startGame, this)
   }
 
   startGame() {
-    this.scene.start('MainScene')
+    this.scene.start('TutorialScene')
   }
 }
 
@@ -37,6 +54,5 @@ window.addEventListener('resize', () => {
   // this.scene.IntroScene.children.list();
   // // var sprites = IntroScene.children.list({key: 'image'});
   // console.log(sprites)
-
   // game.scale.resize(window.innerWidth, window.innerHeight)
 })
